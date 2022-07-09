@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: spree_app_development
+
+test:
+  <<: *default
+  database: spree_app_test
+
+production:
+  <<: *default
+  database: spree_app_production
+  username: spree_app
+  password: <%= ENV['SPREE_APP_DATABASE_PASSWORD'] %>
+
+
